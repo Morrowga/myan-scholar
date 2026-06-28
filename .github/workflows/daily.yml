@@ -1,0 +1,20 @@
+name: Daily Scholarship Search
+
+on:
+  schedule:
+    # Runs every day at 6:00 AM UTC (12:30 PM Myanmar time)
+    - cron: '0 6 * * *'
+  workflow_dispatch:  # Allow manual trigger from GitHub Actions tab
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger daily scholarship search
+        run: |
+          curl -X POST "${{ secrets.SITE_URL }}/api/daily" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            --fail \
+            --silent \
+            --show-error
