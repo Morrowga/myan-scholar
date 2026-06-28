@@ -130,9 +130,9 @@ export default async function ScholarshipPage({ params }: { params: { id: string
           <ul className="checklist mm">
             {s.instructions_mm
               ?.split(/(?=[၁၂၃၄၅၆၇၈၉၀][။])/)
-              .map(t => t.trim())
-              .filter(t => t.length > 3)
-              .map((item, i) => (
+              .map((t: string) => t.trim())
+              .filter((t: string) => t.length > 3)
+              .map((item: string, i: number) => (
                 <li key={i}>{item}</li>
               ))
             }
