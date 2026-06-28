@@ -85,14 +85,14 @@ export default function HomePage() {
         }}/>
 
         <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
-          <div style={{
+          <div className="hero-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '4rem',
             alignItems: 'center',
           }}>
             {/* LEFT — map */}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }} className="map-section">
               <div style={{ position: 'relative', maxWidth: '360px', width: '100%' }}>
                 <div style={{
                   position: 'absolute', inset: '-30px',
@@ -266,12 +266,17 @@ export default function HomePage() {
       </div>
 
       <style>{`
-        @keyframes floatMap {
+         @keyframes floatMap {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-14px) rotate(0.3deg); }
         }
         @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
+          .map-section { display: none !important; }
+          .hero-grid { 
+            grid-template-columns: 1fr !important; 
+            padding-top: 2rem;
+            align-items: flex-start !important;
+          }
         }
       `}</style>
     </>

@@ -68,14 +68,14 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ id
           {s.field && (
             <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
               <label>Fields</label>
-              <div className="mm-prose" ><ReactMarkdown>{s.field}</ReactMarkdown></div>
+              <div className="mm-prose" style={{ fontSize: '0.875rem' }}><ReactMarkdown>{s.field}</ReactMarkdown></div>
             </div>
           )}
 
           {s.covers && (
             <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
               <label>Award & Benefits</label>
-              <div className="mm-prose"><ReactMarkdown>{s.covers}</ReactMarkdown></div>
+              <div className="mm-prose" style={{ fontSize: '0.875rem' }}><ReactMarkdown>{s.covers}</ReactMarkdown></div>
             </div>
           )}
         </div>
