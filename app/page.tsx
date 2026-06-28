@@ -34,7 +34,7 @@ export default function HomePage() {
     setTimeout(() => {
       const el = scholarSection.current
       if (!el) return
-      const top = el.getBoundingClientRect().top + window.scrollY - 60
+      const top = el.getBoundingClientRect().top + window.scrollY - 0
       window.scrollTo({ top, behavior: 'smooth' })
     }, 300)
   }
@@ -58,7 +58,7 @@ export default function HomePage() {
     <>
       {/* ── HERO — full viewport ── */}
       <section style={{
-        minHeight: 'calc(100vh - 57px)',
+        minHeight: 'calc(100vh - 10px)',
         background: 'linear-gradient(rgba(10,10,10,0.55), rgba(10,10,10,0.88)), url(/assets/cloud.png) center center / cover no-repeat',
         display: 'flex',
         alignItems: 'center',
@@ -114,12 +114,11 @@ export default function HomePage() {
             {/* RIGHT — content */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>
-                <span style={{
-                  fontSize: '10px', letterSpacing: '0.16em', textTransform: 'uppercase',
-                  color: '#C9A74B', fontWeight: 600, display: 'block', marginBottom: '1rem',
-                }}>
-                  Myanmar Citizens · Worldwide
-                </span>
+                <img 
+                  src="/assets/logo.png" 
+                  alt="MyanScholar" 
+                  style={{ height: '100px', width: 'auto', marginBottom: '1rem', display: 'block' }}
+                />
                 <h1 style={{
                   fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
                   fontWeight: 700, color: '#ffffff',

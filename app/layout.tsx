@@ -10,11 +10,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="my">
       <body>
-        <header className="site-header">
-          <div className="container">
-            <a href="/" className="site-logo">Your <span>Scholar</span></a>
-          </div>
-        </header>
         {children}
       </body>
     </html>

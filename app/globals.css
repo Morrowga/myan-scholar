@@ -35,12 +35,21 @@ body {
   background: rgba(10,10,10,0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.site-header .container { display: flex; align-items: center; gap: 1rem; }
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
 .site-logo { font-size: 1.2rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.01em; }
 .site-logo span { color: var(--gold); }
 
@@ -50,7 +59,7 @@ body {
   border-bottom: 1px solid var(--border);
   padding: 1rem 0;
   position: sticky;
-  top: 57px;
+  top: 0;
   z-index: 50;
 }
 .filter-bar .container { display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center; }
