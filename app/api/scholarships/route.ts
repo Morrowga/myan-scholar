@@ -23,10 +23,10 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const authHeader = req.headers.get('x-admin-password')
-  if (authHeader !== process.env.ADMIN_PASSWORD) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+   const session = req.cookies.get('admin_session')
+    if (session?.value !== process.env.CRON_SECRET) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
   const body = await req.json()
   const { pdfBase64, ...formData } = body

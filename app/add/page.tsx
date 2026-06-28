@@ -33,17 +33,23 @@ export default function AddPage() {
   }
 
   useEffect(() => {
-    const match = document.cookie.match(/admin_authed=([^;]+)/)
-    if (match && match[1]) {
-      setPassword(match[1])
-      setAuthed(true)
-    }
+    fetch('/api/auth/check')
+      .then(r => { if (r.ok) setAuthed(true) })
   }, [])
 
-  function login() {
+  async function login() {
     if (!password) return
-    document.cookie = `admin_authed=${password}; max-age=86400; path=/`
-    setAuthed(true)
+    const res = await fetch('/api/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+    if (res.ok) {
+      setAuthed(true)
+      setPassword('')
+    } else {
+      alert('Wrong password')
+    }
   }
 
   function setField(k: keyof ScholarshipFormData, v: string) {
@@ -67,7 +73,8 @@ export default function AddPage() {
     const validAttachments = attachments.filter(a => a.trim() !== '')
     const res = await fetch('/api/scholarships', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({ ...form, attachments: validAttachments, pdfBase64: pdfBase64 ?? undefined }),
     })
     const data = await res.json()
