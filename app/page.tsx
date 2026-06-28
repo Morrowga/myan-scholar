@@ -65,14 +65,14 @@ export default function HomePage() {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        <div style={{
+        {/* <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           backgroundImage: `
             linear-gradient(rgba(201,167,75,0.03) 1px, transparent 1px),
             linear-gradient(90deg, rgba(201,167,75,0.03) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
-        }}/>
+        }}/> */}
         <div style={{
           position: 'absolute', top: '30%', right: '10%',
           width: '500px', height: '500px',
