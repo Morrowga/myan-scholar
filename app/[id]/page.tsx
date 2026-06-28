@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Coffee, GraduationCap,Paperclip, Calendar, Globe, BookOpen } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 
+export const revalidate = 0
+
 export default async function ScholarshipPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const { data: s, error } = await supabase

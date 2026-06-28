@@ -127,7 +127,7 @@ export default function AddPage() {
           <div className="field">
             <label>Level *</label>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', padding: '0.65rem 0.9rem', border: '1px solid var(--border)', borderRadius: 'var(--radius)', background: 'var(--surface)' }}>
-              {['undergraduate', 'masters', 'phd', 'any'].map(l => {
+              {['undergraduate', 'masters', 'phd','bachelor', 'any'].map(l => {
                 const selected = form.level.split(',').map(s => s.trim()).includes(l)
                 return (
                   <label key={l} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--ink)', textTransform: 'capitalize' }}>
