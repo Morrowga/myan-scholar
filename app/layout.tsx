@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Myan Scholar — မြန်မာနိုင်ငံသားများအတွက် ပညာသင်ဆုများ',
-  description: 'Scholarships worldwide open to Myanmar citizens — with Burmese language guides on how to apply.',
+  title: 'YourScholar — မြန်မာနိုင်ငံသားများအတွက် ပညာသင်ဆုများ',
+  description: 'Scholarships worldwide open to Myanmar citizens — with Burmese language guides.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -12,10 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="site-header">
           <div className="container">
-            <a href="/" className="site-logo">Myan<span>Scholar</span></a>
-            <a href="/add" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', textDecoration: 'none' }}>
-              + Add Scholarship
-            </a>
+            <a href="/" className="site-logo">Your <span>Scholar</span></a>
           </div>
         </header>
         {children}

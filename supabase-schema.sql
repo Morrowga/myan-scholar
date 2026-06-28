@@ -1,5 +1,5 @@
 -- ============================================================
--- MYAN SCHOLAR — Supabase Database Schema
+-- Your SCHOLAR — Supabase Database Schema
 -- Run this in your Supabase project → SQL Editor → New Query
 -- ============================================================
 

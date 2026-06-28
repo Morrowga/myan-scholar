@@ -1,4 +1,4 @@
-export type ScholarshipLevel = 'undergraduate' | 'masters' | 'phd' | 'any'
+export type ScholarshipLevel = string
 
 export interface Scholarship {
   id: string
@@ -21,6 +21,8 @@ export interface Scholarship {
   requirements_mm?: string
   instructions_mm?: string
   checklist_mm?: string        // JSON string → string[]
+  start_date?: string
+  duration?: string
 
   // Status
   is_published: boolean
@@ -34,8 +36,11 @@ export interface ScholarshipFormData {
   level: ScholarshipLevel
   field: string
   deadline: string
+  start_date: string
+  duration: string
   source_url: string
   host_org: string
   covers: string
   requirements: string
+  original_content: string
 }

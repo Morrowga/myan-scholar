@@ -1,6 +1,8 @@
 import { supabase } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Coffee, GraduationCap,Paperclip, Calendar, Globe, BookOpen } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 
 export default async function ScholarshipPage({ params }: { params: { id: string } }) {
   const { data: s, error } = await supabase
@@ -37,10 +39,16 @@ export default async function ScholarshipPage({ params }: { params: { id: string
               <span style={{ textTransform: 'capitalize' }}>{s.level}</span>
             </div>
           )}
-          {s.field && (
+          {s.start_date && (
             <div className="detail-item">
-              <label>Fields</label>
-              <span>{s.field}</span>
+              <label>Start Date</label>
+              <span>{s.start_date}</span>
+            </div>
+          )}
+          {s.duration && (
+            <div className="detail-item">
+              <label>Duration</label>
+              <span>{s.duration}</span>
             </div>
           )}
           {s.deadline && (
@@ -55,10 +63,18 @@ export default async function ScholarshipPage({ params }: { params: { id: string
               <span>{s.host_org}</span>
             </div>
           )}
+
+          {s.field && (
+            <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
+              <label>Fields</label>
+              <div className="mm-prose" ><ReactMarkdown>{s.field}</ReactMarkdown></div>
+            </div>
+          )}
+
           {s.covers && (
             <div className="detail-item" style={{ gridColumn: '1 / -1' }}>
-              <label>Covers</label>
-              <span>{s.covers}</span>
+              <label>Award & Benefits</label>
+              <div className="mm-prose"><ReactMarkdown>{s.covers}</ReactMarkdown></div>
             </div>
           )}
         </div>
@@ -71,6 +87,33 @@ export default async function ScholarshipPage({ params }: { params: { id: string
           </div>
         )}
 
+        {s.original_content && (
+          <details style={{ marginBottom: '1.25rem' }}>
+            <summary style={{ cursor: 'pointer', fontSize: '0.875rem', color: 'var(--muted)', padding: '0.5rem 0' }}>
+              View Additional Description
+            </summary>
+            <div className='mm-prose' style={{ marginTop: '0.75rem', fontSize: '0.9rem', lineHeight: '1.8', color: 'var(--ink)'}}>
+            <ReactMarkdown>{s.original_content}</ReactMarkdown>
+          </div>
+          </details>
+        )}
+
+        {s.attachments && JSON.parse(s.attachments).length > 0 && (
+          <div className="section-card" style={{ marginTop: '1rem' }}>
+            <h2>Attachment Links</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {JSON.parse(s.attachments).map((url: string, i: number) => (
+                <a key={i} href={url} target="_blank" rel="noopener noreferrer"
+                  style={{ color: 'var(--gold)', fontSize: '0.9rem', wordBreak: 'break-all' }}>
+                  <Paperclip size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '0.35rem' }} />
+                   {url}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+
         {/* Document checklist - Burmese */}
         {checklist.length > 0 && (
           <div className="section-card">
@@ -82,24 +125,42 @@ export default async function ScholarshipPage({ params }: { params: { id: string
         )}
 
         {/* Preparation instructions - Burmese */}
-        {s.instructions_mm && (
-          <div className="section-card">
-            <h2>လျှောက်ထားနည်း အဆင့်ဆင့် (How to Apply)</h2>
-            <div className="mm" style={{ whiteSpace: 'pre-line', fontSize: '0.95rem', lineHeight: '2' }}>
-              {s.instructions_mm}
-            </div>
-          </div>
-        )}
+        <div className="section-card">
+          <h2>အကျဉ်းချုပ် (Summary)</h2>
+          <ul className="checklist mm">
+            {s.instructions_mm
+              ?.split(/(?=[၁၂၃၄၅၆၇၈၉၀][။])/)
+              .map(t => t.trim())
+              .filter(t => t.length > 3)
+              .map((item, i) => (
+                <li key={i}>{item}</li>
+              ))
+            }
+          </ul>
+        </div>
 
         {/* Original English requirements (collapsed) */}
         <details style={{ marginBottom: '1.25rem' }}>
           <summary style={{ cursor: 'pointer', fontSize: '0.875rem', color: 'var(--muted)', padding: '0.5rem 0' }}>
             View original requirements (English)
           </summary>
-          <div style={{ marginTop: '0.75rem', fontSize: '0.9rem', lineHeight: '1.8', color: 'var(--ink)' }}>
-            {s.requirements}
+          <div className='mm-prose' style={{ marginTop: '0.75rem', fontSize: '0.9rem', lineHeight: '1.8', color: 'var(--ink)' }}>
+            <ReactMarkdown>{s.requirements}</ReactMarkdown>
           </div>
         </details>
+
+        <div style={{
+          background: 'rgba(201,167,75,0.08)',
+          border: '1px solid rgba(201,167,75,0.2)',
+          borderRadius: 'var(--radius)',
+          padding: '0.9rem 1.1rem',
+          marginBottom: '1rem',
+          fontSize: '0.85rem',
+          color: 'rgba(255,255,255,0.6)',
+          lineHeight: 1.7,
+        }}>
+          ⚠️ Please visit the official scholarship page for complete and up-to-date details before deciding.
+        </div>
 
         {/* Apply button */}
         <a href={s.source_url} target="_blank" rel="noopener noreferrer" className="apply-btn">
@@ -108,11 +169,15 @@ export default async function ScholarshipPage({ params }: { params: { id: string
 
         {/* Coffee banner - shown after Apply */}
         <div className="coffee-banner">
-          ☕ ဤပညာသင်ဆု ရရှိပါက ကျွန်ုပ်တို့အား{' '}
+          <Coffee size={16} style={{ display: 'inline', verticalAlign: 'middle' }} />
+          {' '}
           <a href="https://buymeacoffee.com/your-username" target="_blank" rel="noopener noreferrer">
-            ကော်ဖီတစ်ခွက် ဝယ်ကျွေးနိုင်ပါသည်
+            buy me a coffee
           </a>
-          {' '}— ဝန်ဆောင်မှုကို ဆက်လက်ထိန်းသိမ်းနိုင်ရန် ကူညီပါမည် 🙏
+          {' '}
+          when you get this scholarship
+          {' '}
+          <GraduationCap size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '0.35rem' }} />
         </div>
       </div>
     </div>

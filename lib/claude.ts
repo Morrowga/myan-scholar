@@ -45,6 +45,8 @@ For each scholarship found, extract:
 - source_url: the official page URL
 - host_org: organization offering it
 - covers: what it covers (tuition, living allowance, airfare, etc.)
+- start_date: when the scholarship starts (e.g. "September 2026")
+- duration: how long it lasts (e.g. "Full duration of course")
 - requirements: full eligibility requirements in English
 
 Return ONLY a valid JSON array. No markdown. No explanation. Example:

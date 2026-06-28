@@ -1,4 +1,4 @@
-# MyanScholar 🇲🇲
+# YourScholar 🇲🇲
 
 Scholarships worldwide open to Myanmar citizens — with daily AI updates and full Burmese language guides.
 
@@ -49,7 +49,7 @@ Or connect your GitHub repo at [vercel.com](https://vercel.com) — auto-deploys
 
 ### 5. GitHub Actions (daily cron)
 In your GitHub repo → Settings → Secrets and variables → Actions → New repository secret:
-- `SITE_URL` → your Vercel URL, e.g. `https://myanscholar.vercel.app`
+- `SITE_URL` → your Vercel URL, e.g. `https://yourscholar.vercel.app`
 - `CRON_SECRET` → same value as in your `.env.local`
 
 The cron runs daily at 6:00 AM UTC (12:30 PM Myanmar time).
