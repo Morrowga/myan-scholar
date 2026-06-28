@@ -8,10 +8,13 @@ interface FoundScholarship {
   level: string
   field: string
   deadline: string
+  start_date: string
+  duration: string
   source_url: string
   host_org: string
   covers: string
   requirements: string
+  original_content: string
 }
 
 export async function findNewScholarships(): Promise<FoundScholarship[]> {

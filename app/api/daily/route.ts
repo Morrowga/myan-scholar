@@ -39,10 +39,13 @@ export async function POST(req: NextRequest) {
         level: (s.level as ScholarshipFormData['level']) ?? 'any',
         field: s.field ?? '',
         deadline: s.deadline ?? '',
+        start_date: s.start_date ?? '',
+        duration: s.duration ?? '',
         source_url: s.source_url,
         host_org: s.host_org ?? '',
         covers: s.covers ?? '',
         requirements: s.requirements,
+        original_content: s.original_content ?? '',
       }
 
       const result = await saveScholarship(formData, { ai_generated: true })
